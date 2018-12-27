@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
+	<data>
+		<import type="jp.gr.java_conf.mitchibu.passwordmanager.ui.account.AccountViewModel"/>
+		<variable
+			name="model"
+			type="AccountViewModel"/>
+	</data>
+	<LinearLayout
+		android:orientation="vertical"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		tools:context=".ui.outline.OutlineFragment">
+		<TextView
+			android:text="@{model.account.title}"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content" />
+		<TextView
+			android:text="@{model.account.name}"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content" />
+		<TextView
+			android:text="@{model.account.comment}"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content" />
+	</LinearLayout>
+</layout>

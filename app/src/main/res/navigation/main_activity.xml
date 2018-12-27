@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/main_activity"
+	app:startDestination="@id/outlineFragment">
+
+	<fragment
+		android:id="@+id/outlineFragment"
+		android:name="jp.gr.java_conf.mitchibu.passwordmanager.ui.outline.OutlineFragment"
+		android:label="outline_fragment"
+		tools:layout="@layout/outline_fragment" >
+		<action
+			android:id="@+id/action_outlineFragment_to_accountFragment"
+			app:destination="@id/accountFragment"
+			app:enterAnim="@animator/slide_enter"
+			app:exitAnim="@animator/slide_exit"
+			app:popEnterAnim="@animator/slide_pop_enter"
+			app:popExitAnim="@animator/slide_pop_exit" />
+	</fragment>
+	<fragment
+		android:id="@+id/accountFragment"
+		android:name="jp.gr.java_conf.mitchibu.passwordmanager.ui.account.AccountFragment"
+		android:label="AccountFragment"
+		tools:layout="@layout/account_fragment" >
+		<argument
+			android:name="account"
+			app:argType="jp.gr.java_conf.mitchibu.passwordmanager.model.dao.Account" />
+	</fragment>
+</navigation>
