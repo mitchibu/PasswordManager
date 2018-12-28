@@ -1,6 +1,8 @@
 package jp.gr.java_conf.mitchibu.passwordmanager.ui;
 
 import android.os.Bundle;
+import android.support.v4.view.GravityCompat;
+import android.view.MenuItem;
 
 import java.util.Objects;
 
@@ -19,10 +21,26 @@ public class MainActivity extends DataBindingActivity<MainActivityBinding> {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setSupportActionBar(getBinding().toolBar);
 
 		NavHostFragment host = (NavHostFragment)getSupportFragmentManager().findFragmentById(R.id.nav_host);
 		controller = NavHostFragment.findNavController(Objects.requireNonNull(host));
-		NavigationUI.setupActionBarWithNavController(this, controller);
+		NavigationUI.setupActionBarWithNavController(this, controller, getBinding().drawer);
+		NavigationUI.setupWithNavController(getBinding().navigation, controller);
+	}
+
+	@Override
+	public void onBackPressed() {
+		if(getBinding().drawer.isDrawerOpen(GravityCompat.START)) {
+			getBinding().drawer.closeDrawer(GravityCompat.START);
+		} else {
+			super.onBackPressed();
+		}
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		return NavigationUI.onNavDestinationSelected(item, controller) || super.onOptionsItemSelected(item);
 	}
 
 	@Override
