@@ -3,6 +3,7 @@ package jp.gr.java_conf.mitchibu.passwordmanager.ui.outline;
 import android.content.Context;
 import android.databinding.ViewDataBinding;
 import android.support.annotation.NonNull;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.util.DiffUtil;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -41,6 +42,7 @@ public class OutlineAdapter extends BindablePagedAdapter<Account> {
 
 	@Override
 	public void onBindViewHolder(@NonNull BindableViewHolder holder, int position) {
+		ViewCompat.setTransitionName(holder.binding.getRoot(), "share" + position);
 		Account account = getItem(position);
 		if(holder.binding instanceof OutlineItemBinding) {
 			((OutlineItemBinding)holder.binding).setAccount(account);

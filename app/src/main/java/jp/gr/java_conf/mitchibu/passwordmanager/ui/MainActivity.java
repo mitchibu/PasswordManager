@@ -45,6 +45,6 @@ public class MainActivity extends DataBindingActivity<MainActivityBinding> {
 
 	@Override
 	public boolean onSupportNavigateUp() {
-		return controller.navigateUp() || super.onSupportNavigateUp();
+		return NavigationUI.navigateUp(controller, getBinding().drawer) || super.onSupportNavigateUp();
 	}
 }

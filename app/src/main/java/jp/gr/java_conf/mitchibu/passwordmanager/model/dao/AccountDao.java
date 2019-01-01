@@ -5,6 +5,7 @@ import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Update;
 
 @Dao
 public interface AccountDao {
@@ -15,7 +16,10 @@ public interface AccountDao {
 	DataSource.Factory<Integer, Account> get(long id);
 
 	@Insert(onConflict = OnConflictStrategy.REPLACE)
-	void insert(Account... users);
+	long[] insert(Account... accounts);
+
+	@Update
+	int update(Account account);
 
 //	@Insert
 //	Completable insertAll(Account... users);

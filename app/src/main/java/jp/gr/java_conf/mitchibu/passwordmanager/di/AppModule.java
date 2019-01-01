@@ -15,7 +15,7 @@ public class AppModule {
 	@Singleton
 	@Provides
 	MyDatabase provideMyDatabase(MyApplication app) {
-		return Room.inMemoryDatabaseBuilder(app, MyDatabase.class).build();
+		return Room.inMemoryDatabaseBuilder(app, MyDatabase.class).allowMainThreadQueries().build();
 //		return Room.databaseBuilder(app,
 //				MyDatabase.class,
 //				"database-name").build();

@@ -29,6 +29,8 @@ ver.squareup.picasso = "2.71828"
 ver.reactivex = [:]
 ver.reactivex.rxjava = "2.2.4"
 ver.reactivex.rxandroid = "2.1.0"
+ver.nulab = [:]
+ver.nulab.zxcvbn = "1.2.5"
 
 def libs = ext.libs = [:]
 libs.test = [:]
@@ -94,3 +96,5 @@ libs.squareup.okhttp3.okhttp = "com.squareup.okhttp3:okhttp:$ver.squareup.okhttp
 libs.squareup.okhttp3.logging_interceptor = "com.squareup.okhttp3:logging-interceptor:$ver.squareup.okhttp"
 libs.squareup.picasso = [:] // Picasso
 libs.squareup.picasso.picasso = "com.squareup.picasso:picasso:$ver.squareup.picasso"
+libs.nulab = [:]
+libs.nulab.zxcvbn = "com.nulab-inc:zxcvbn:$ver.nulab.zxcvbn"

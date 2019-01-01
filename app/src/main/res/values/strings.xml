@@ -1,6 +1,10 @@
 <resources>
 	<string name="app_name">PasswordManage</string>
 
-	<!-- TODO: Remove or change this placeholder text -->
+	<string name="title">Title</string>
+	<string name="name">Account Name</string>
+	<string name="password">Password</string>
+	<string name="comment">Comment</string>
+
 	<string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

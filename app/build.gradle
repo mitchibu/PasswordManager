@@ -55,6 +55,8 @@ dependencies {
     annotationProcessor libs.google.dagger.compiler
     annotationProcessor libs.google.dagger.android_processor
 
+    implementation libs.nulab.zxcvbn
+
     testImplementation libs.test.junit
     androidTestImplementation libs.android.support.test.runner
     androidTestImplementation libs.android.support.test.espresso

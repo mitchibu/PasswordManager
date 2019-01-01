@@ -21,7 +21,7 @@ public class Account implements Parcelable {
 	};
 
 	@PrimaryKey(autoGenerate = true)
-	public long id;
+	public long id = 0;
 
 	@ColumnInfo(name = "title")
 	public String title;

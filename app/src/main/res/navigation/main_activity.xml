@@ -12,11 +12,7 @@
 		tools:layout="@layout/outline_fragment" >
 		<action
 			android:id="@+id/action_outlineFragment_to_accountFragment"
-			app:destination="@id/accountFragment"
-			app:enterAnim="@animator/slide_enter"
-			app:exitAnim="@animator/slide_exit"
-			app:popEnterAnim="@animator/slide_pop_enter"
-			app:popExitAnim="@animator/slide_pop_exit" />
+			app:destination="@id/accountFragment"/>
 	</fragment>
 	<fragment
 		android:id="@+id/accountFragment"
@@ -24,7 +20,14 @@
 		android:label="AccountFragment"
 		tools:layout="@layout/account_fragment" >
 		<argument
+			android:name="share"
+			android:defaultValue="@null"
+			app:nullable="true"
+			app:argType="java.lang.String" />
+		<argument
 			android:name="account"
+			android:defaultValue="@null"
+			app:nullable="true"
 			app:argType="jp.gr.java_conf.mitchibu.passwordmanager.model.dao.Account" />
 	</fragment>
 </navigation>

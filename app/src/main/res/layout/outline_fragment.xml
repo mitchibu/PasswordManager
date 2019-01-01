@@ -4,19 +4,36 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools">
 	<data>
+		<import type="android.view.View"/>
+		<import type="jp.gr.java_conf.mitchibu.passwordmanager.ui.outline.OutlinePresenter"/>
 		<import type="jp.gr.java_conf.mitchibu.passwordmanager.ui.outline.OutlineViewModel"/>
 		<variable
 			name="model"
 			type="OutlineViewModel"/>
+		<variable
+			name="presenter"
+			type="OutlinePresenter"/>
 	</data>
 	<FrameLayout
+		android:animateLayoutChanges="true"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		tools:context=".ui.outline.OutlineFragment">
 		<android.support.v7.widget.RecyclerView
 			app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+			app:onScrollListener="@{model}"
 			android:id="@+id/list"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"/>
+		<android.support.design.widget.FloatingActionButton
+			android:id="@+id/fab"
+			android:src="@android:drawable/ic_menu_add"
+			android:visibility="@{model.isScrolling ? View.GONE : View.VISIBLE}"
+			android:onClick="@{presenter.onClickListener}"
+			android:transitionName="share"
+			android:layout_gravity="end|bottom"
+			android:layout_margin="@dimen/padding_middle"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"/>
 	</FrameLayout>
 </layout>
