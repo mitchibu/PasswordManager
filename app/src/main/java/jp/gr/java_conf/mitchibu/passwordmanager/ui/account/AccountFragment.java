@@ -2,14 +2,10 @@ package jp.gr.java_conf.mitchibu.passwordmanager.ui.account;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.transition.ChangeBounds;
 import android.support.transition.ChangeTransform;
 import android.support.transition.TransitionSet;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import javax.inject.Inject;
 

@@ -2,11 +2,11 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto">
 	<data>
-		<import type="jp.gr.java_conf.mitchibu.passwordmanager.model.dao.Account"/>
+		<import type="jp.gr.java_conf.mitchibu.passwordmanager.model.dao.AccountView"/>
 		<import type="jp.gr.java_conf.mitchibu.passwordmanager.ui.view.OnItemClickListener"/>
 		<variable
 			name="account"
-			type="Account"/>
+			type="AccountView"/>
 		<variable
 			name="position"
 			type="int"/>
@@ -29,10 +29,20 @@
 				app:layout_constraintLeft_toLeftOf="parent"
 				app:layout_constraintTop_toTopOf="parent"
 				app:layout_constraintRight_toRightOf="parent"
+				app:layout_constraintBottom_toTopOf="@id/title"
+				android:id="@+id/category"
+				android:textAppearance="?attr/textAppearanceListItem"
+				android:text="@{account.category.name}"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"/>
+			<TextView
+				app:layout_constraintLeft_toLeftOf="parent"
+				app:layout_constraintTop_toBottomOf="@id/category"
+				app:layout_constraintRight_toRightOf="parent"
 				app:layout_constraintBottom_toTopOf="@id/name"
 				android:id="@+id/title"
 				android:textAppearance="?attr/textAppearanceListItem"
-				android:text="@{account.title}"
+				android:text="@{account.account.title}"
 				android:layout_width="0dp"
 				android:layout_height="wrap_content"/>
 			<TextView
@@ -42,7 +52,7 @@
 				app:layout_constraintBottom_toBottomOf="parent"
 				android:id="@+id/name"
 				android:textAppearance="?attr/textAppearanceListItemSecondary"
-				android:text="@{account.name}"
+				android:text="@{account.account.name}"
 				android:layout_width="0dp"
 				android:layout_height="wrap_content"/>
 		</android.support.constraint.ConstraintLayout>

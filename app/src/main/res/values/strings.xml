@@ -1,6 +1,7 @@
 <resources>
 	<string name="app_name">PasswordManage</string>
 
+	<string name="category">Category</string>
 	<string name="title">Title</string>
 	<string name="name">Account Name</string>
 	<string name="password">Password</string>

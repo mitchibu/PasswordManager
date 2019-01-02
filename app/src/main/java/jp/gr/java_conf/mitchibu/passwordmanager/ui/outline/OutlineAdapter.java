@@ -9,29 +9,29 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import jp.gr.java_conf.mitchibu.passwordmanager.databinding.OutlineItemBinding;
-import jp.gr.java_conf.mitchibu.passwordmanager.model.dao.Account;
+import jp.gr.java_conf.mitchibu.passwordmanager.model.dao.AccountView;
 import jp.gr.java_conf.mitchibu.passwordmanager.ui.view.BindablePagedAdapter;
 import jp.gr.java_conf.mitchibu.passwordmanager.ui.view.BindableViewHolder;
 import jp.gr.java_conf.mitchibu.passwordmanager.ui.view.OnItemClickListener;
 
-public class OutlineAdapter extends BindablePagedAdapter<Account> {
-	private OnItemClickListener<Account> onItemClickListener = null;
+public class OutlineAdapter extends BindablePagedAdapter<AccountView> {
+	private OnItemClickListener<AccountView> onItemClickListener = null;
 
 	OutlineAdapter() {
-		super(new DiffUtil.ItemCallback<Account>() {
+		super(new DiffUtil.ItemCallback<AccountView>() {
 			@Override
-			public boolean areItemsTheSame(@NonNull Account oldItem, @NonNull Account newItem) {
-				return oldItem.id == newItem.id;
+			public boolean areItemsTheSame(@NonNull AccountView oldItem, @NonNull AccountView newItem) {
+				return oldItem.account.id == newItem.account.id;
 			}
 
 			@Override
-			public boolean areContentsTheSame(@NonNull Account oldItem, @NonNull Account newItem) {
+			public boolean areContentsTheSame(@NonNull AccountView oldItem, @NonNull AccountView newItem) {
 				return oldItem.equals(newItem);
 			}
 		});
 	}
 
-	void setOnItemClickListener(OnItemClickListener<Account> listener) {
+	void setOnItemClickListener(OnItemClickListener<AccountView> listener) {
 		onItemClickListener = listener;
 	}
 
@@ -43,7 +43,7 @@ public class OutlineAdapter extends BindablePagedAdapter<Account> {
 	@Override
 	public void onBindViewHolder(@NonNull BindableViewHolder holder, int position) {
 		ViewCompat.setTransitionName(holder.binding.getRoot(), "share" + position);
-		Account account = getItem(position);
+		AccountView account = getItem(position);
 		if(holder.binding instanceof OutlineItemBinding) {
 			((OutlineItemBinding)holder.binding).setAccount(account);
 			((OutlineItemBinding)holder.binding).setListener(onItemClickListener);

@@ -28,6 +28,6 @@
 			android:name="account"
 			android:defaultValue="@null"
 			app:nullable="true"
-			app:argType="jp.gr.java_conf.mitchibu.passwordmanager.model.dao.Account" />
+			app:argType="jp.gr.java_conf.mitchibu.passwordmanager.model.dao.AccountView" />
 	</fragment>
 </navigation>

@@ -23,6 +23,9 @@ public class Account implements Parcelable {
 	@PrimaryKey(autoGenerate = true)
 	public long id = 0;
 
+	@ColumnInfo(name = "categoryId")
+	public long categoryId = 0;
+
 	@ColumnInfo(name = "title")
 	public String title;
 
@@ -38,8 +41,9 @@ public class Account implements Parcelable {
 	public Account() {
 	}
 
-	protected Account(Parcel in) {
+	private Account(Parcel in) {
 		id = in.readLong();
+		categoryId = in.readLong();
 		title = in.readString();
 		name = in.readString();
 		password = in.readString();
@@ -54,6 +58,7 @@ public class Account implements Parcelable {
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
 		dest.writeLong(id);
+		dest.writeLong(categoryId);
 		dest.writeString(title);
 		dest.writeString(name);
 		dest.writeString(password);

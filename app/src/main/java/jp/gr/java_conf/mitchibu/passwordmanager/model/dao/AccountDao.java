@@ -9,10 +9,13 @@ import android.arch.persistence.room.Update;
 
 @Dao
 public interface AccountDao {
-	@Query("SELECT * FROM Account")
+	@Query("select Account.*,Category.id as c_id,Category.name as c_name from Account left join Category on Account.categoryId=Category.id")
+	DataSource.Factory<Integer, AccountView> getAll2();
+
+	@Query("select * from Account")
 	DataSource.Factory<Integer, Account> getAll();
 
-	@Query("SELECT * FROM Account where id=:id")
+	@Query("select * from Account where id=:id")
 	DataSource.Factory<Integer, Account> get(long id);
 
 	@Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -26,4 +29,7 @@ public interface AccountDao {
 
 	@Query("delete from Account")
 	void deleteAll();
+
+	@Insert(onConflict = OnConflictStrategy.REPLACE)
+	long[] insert(Category... categories);
 }

@@ -4,17 +4,16 @@ import android.databinding.BindingAdapter;
 import android.support.annotation.NonNull;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.View;
 
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.FragmentNavigator;
-import jp.gr.java_conf.mitchibu.passwordmanager.model.dao.Account;
+import jp.gr.java_conf.mitchibu.passwordmanager.model.dao.AccountView;
 import jp.gr.java_conf.mitchibu.passwordmanager.ui.view.OnItemClickListener;
 
 public class OutlinePresenter {
 	public final View.OnClickListener onClickListener = view -> showAccountFragment(view, null);
-	final OnItemClickListener<Account> onItemClickListener = this::showAccountFragment;
+	final OnItemClickListener<AccountView> onItemClickListener = this::showAccountFragment;
 
 	@BindingAdapter("onScrollListener")
 	public static void onScrollListener(RecyclerView view, final OutlineViewModel model) {
@@ -26,7 +25,7 @@ public class OutlinePresenter {
 		});
 	}
 
-	private void showAccountFragment(View view, Account account) {
+	private void showAccountFragment(View view, AccountView account) {
 		OutlineFragmentDirections.ActionOutlineFragmentToAccountFragment directions = OutlineFragmentDirections.actionOutlineFragmentToAccountFragment();
 		if(account != null) directions.setAccount(account);
 
