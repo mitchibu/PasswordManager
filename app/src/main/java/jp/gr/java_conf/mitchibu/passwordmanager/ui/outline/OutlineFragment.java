@@ -13,6 +13,7 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 import jp.gr.java_conf.mitchibu.passwordmanager.R;
 import jp.gr.java_conf.mitchibu.passwordmanager.databinding.OutlineFragmentBinding;
+import jp.gr.java_conf.mitchibu.passwordmanager.model.dao.MyDatabase;
 import jp.gr.java_conf.mitchibu.passwordmanager.ui.base.BindLayout;
 import jp.gr.java_conf.mitchibu.passwordmanager.ui.base.DataBindingFragment;
 import jp.gr.java_conf.mitchibu.passwordmanager.ui.util.MyViewModelFactory;
@@ -20,7 +21,7 @@ import jp.gr.java_conf.mitchibu.passwordmanager.ui.util.MyViewModelFactory;
 @BindLayout(R.layout.outline_fragment)
 public class OutlineFragment extends DataBindingFragment<OutlineFragmentBinding> {
 	@Inject
-	MyViewModelFactory factory;
+	MyViewModelFactory<MyDatabase> factory;
 
 	private final CompositeDisposable disposables = new CompositeDisposable();
 	private final OutlineAdapter adapter = new OutlineAdapter();

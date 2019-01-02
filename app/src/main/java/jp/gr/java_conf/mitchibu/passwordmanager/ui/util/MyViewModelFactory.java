@@ -4,20 +4,20 @@ import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
 
-import jp.gr.java_conf.mitchibu.passwordmanager.model.dao.MyDatabase;
+public class MyViewModelFactory<E> implements ViewModelProvider.Factory {
+	private final E data;
+	private final Class<E> clazz;
 
-public class MyViewModelFactory implements ViewModelProvider.Factory {
-	private final MyDatabase db;
-
-	public MyViewModelFactory(MyDatabase db) {
-		this.db = db;
+	public MyViewModelFactory(E data, Class<E> clazz) {
+		this.data = data;
+		this.clazz = clazz;
 	}
 
 	@NonNull
 	@Override
 	public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
 		try {
-			return modelClass.getConstructor(MyDatabase.class).newInstance(db);
+			return modelClass.getConstructor(clazz).newInstance(data);
 		} catch(Exception e) {
 			e.printStackTrace();
 			throw new IllegalStateException();

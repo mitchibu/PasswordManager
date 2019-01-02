@@ -15,6 +15,7 @@ import javax.inject.Inject;
 
 import jp.gr.java_conf.mitchibu.passwordmanager.R;
 import jp.gr.java_conf.mitchibu.passwordmanager.databinding.AccountFragmentBinding;
+import jp.gr.java_conf.mitchibu.passwordmanager.model.dao.MyDatabase;
 import jp.gr.java_conf.mitchibu.passwordmanager.ui.base.BindLayout;
 import jp.gr.java_conf.mitchibu.passwordmanager.ui.base.DataBindingFragment;
 import jp.gr.java_conf.mitchibu.passwordmanager.ui.util.MyViewModelFactory;
@@ -22,7 +23,7 @@ import jp.gr.java_conf.mitchibu.passwordmanager.ui.util.MyViewModelFactory;
 @BindLayout(R.layout.account_fragment)
 public class AccountFragment extends DataBindingFragment<AccountFragmentBinding> {
 	@Inject
-	MyViewModelFactory factory;
+	MyViewModelFactory<MyDatabase> factory;
 
 	public AccountFragment() {
 		TransitionSet set = new TransitionSet();

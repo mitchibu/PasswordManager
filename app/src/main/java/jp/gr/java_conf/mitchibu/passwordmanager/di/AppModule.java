@@ -22,7 +22,7 @@ public class AppModule {
 	}
 
 	@Provides
-	MyViewModelFactory provideMyViewModelFactory(MyDatabase db) {
-		return new MyViewModelFactory(db);
+	MyViewModelFactory<MyDatabase> provideMyViewModelFactory(MyDatabase db) {
+		return new MyViewModelFactory<>(db, MyDatabase.class);
 	}
 }
