@@ -6,14 +6,23 @@ import android.arch.lifecycle.ViewModel;
 import android.databinding.BindingAdapter;
 import android.text.TextUtils;
 import android.widget.RatingBar;
+import android.widget.TextView;
 
 import com.nulabinc.zxcvbn.Strength;
 import com.nulabinc.zxcvbn.Zxcvbn;
+
+import java.text.DateFormat;
+import java.util.Date;
 
 import jp.gr.java_conf.mitchibu.passwordmanager.model.dao.Account;
 import jp.gr.java_conf.mitchibu.passwordmanager.model.dao.MyDatabase;
 
 public class AccountViewModel extends ViewModel {
+	@BindingAdapter("date")
+	public static void date(TextView view, long timestamp) {
+		view.setText(DateFormat.getDateInstance().format(new Date(timestamp)));
+	}
+
 	public final MutableLiveData<Account> account = new MutableLiveData<>();
 	public final MediatorLiveData<String> title = new MediatorLiveData<>();
 	public final MediatorLiveData<String> name = new MediatorLiveData<>();
