@@ -38,6 +38,7 @@ public class AccountViewModel extends ViewModel {
 		account.name = name.getValue();
 		account.password = password.getValue();
 		account.comment = comment.getValue();
+		account.updatedAt = System.currentTimeMillis();
 		if(account.id == 0) {
 			long[] id = db.accountDao().insert(account);
 			android.util.Log.v("test", "insert");

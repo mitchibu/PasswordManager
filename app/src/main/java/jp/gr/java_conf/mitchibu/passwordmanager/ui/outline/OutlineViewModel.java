@@ -27,6 +27,8 @@ public class OutlineViewModel extends ViewModel {
 					accounts[i].name = "name" + i;
 					accounts[i].password = "password" + i;
 					accounts[i].comment = "comment" + i;
+					accounts[i].createdAt = System.currentTimeMillis();
+					accounts[i].updatedAt = System.currentTimeMillis();
 				}
 				db.accountDao().insert(accounts);
 			}
@@ -35,8 +37,15 @@ public class OutlineViewModel extends ViewModel {
 		this.db = db;
 	}
 
-	public void delete(long id) {
-		android.util.Log.v("test", "delete: " + id);
+	void delete(long id) {
+		db.accountDao().deleteById(id, System.currentTimeMillis());
+	}
+
+	void commit(long id) {
 		db.accountDao().deleteById(id);
+	}
+
+	void restore(long id) {
+		db.accountDao().cancelDeleteById(id, System.currentTimeMillis());
 	}
 }

@@ -10,10 +10,10 @@ import android.arch.persistence.room.Update;
 
 @Dao
 public interface AccountDao {
-	@Query("SELECT * FROM Account")
+	@Query("select * from Account where deletedAt is null")
 	DataSource.Factory<Integer, Account> getAll();
 
-	@Query("SELECT * FROM Account where id=:id")
+	@Query("select * from Account where id=:id")
 	DataSource.Factory<Integer, Account> get(long id);
 
 	@Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -28,6 +28,12 @@ public interface AccountDao {
 	@Query("delete from Account")
 	void deleteAll();
 
-	@Query("delete from Account where id = :id")
+	@Query("update Account set updatedAt = :timestamp, deletedAt = :timestamp where id = :id")
+	void deleteById(long id, long timestamp);
+
+	@Query("delete from Account where id = :id and deletedAt is not null")
 	void deleteById(long id);
+
+	@Query("update Account set updatedAt = :timestamp, deletedAt = null where id = :id")
+	void cancelDeleteById(long id, long timestamp);
 }

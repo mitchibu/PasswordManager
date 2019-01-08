@@ -41,6 +41,9 @@ public class Account implements Parcelable {
 	@ColumnInfo(name = "updatedAt")
 	public long updatedAt;
 
+	@ColumnInfo(name = "deletedAt")
+	public Long deletedAt = null;
+
 	public Account() {
 	}
 
@@ -52,6 +55,7 @@ public class Account implements Parcelable {
 		comment = in.readString();
 		createdAt = in.readLong();
 		updatedAt = in.readLong();
+		deletedAt = (Long)in.readValue(Long.class.getClassLoader());
 	}
 
 	@Override
@@ -68,5 +72,6 @@ public class Account implements Parcelable {
 		dest.writeString(comment);
 		dest.writeLong(createdAt);
 		dest.writeLong(updatedAt);
+		dest.writeValue(deletedAt);
 	}
 }

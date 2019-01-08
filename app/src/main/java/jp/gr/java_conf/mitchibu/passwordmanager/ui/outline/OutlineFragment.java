@@ -4,6 +4,8 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BaseTransientBottomBar;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
@@ -47,8 +49,18 @@ public class OutlineFragment extends DataBindingFragment<OutlineFragmentBinding>
 		ItemTouchHelper helper = new ItemTouchHelper(new SwipeToDeleteCallback() {
 			@Override
 			public void onSwiped(@NonNull RecyclerView.ViewHolder holder, int direction) {
-				android.util.Log.v("test", "onSwiped: " + direction);
-				getBinding().getModel().delete(holder.getItemId());
+				final long id = holder.getItemId();
+				getBinding().getModel().delete(id);
+
+				Snackbar snackbar = Snackbar.make(holder.itemView, "test", Snackbar.LENGTH_SHORT);
+				snackbar.addCallback(new BaseTransientBottomBar.BaseCallback<Snackbar>() {
+					@Override
+					public void onDismissed(Snackbar transientBottomBar, int event) {
+						getBinding().getModel().commit(id);
+					}
+				});
+				snackbar.setAction(android.R.string.cancel, v -> getBinding().getModel().restore(id));
+				snackbar.show();
 			}
 		});
 		helper.attachToRecyclerView(getBinding().list);
