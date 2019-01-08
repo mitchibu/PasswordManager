@@ -14,6 +14,8 @@ public class OutlineViewModel extends ViewModel {
 	public final MutableLiveData<Boolean> isScrolling = new MutableLiveData<>();
 	public final Flowable<PagedList<Account>> data;
 
+	private final MyDatabase db;
+
 	public OutlineViewModel(MyDatabase db) {
 		new Thread() {
 			public void run() {
@@ -30,5 +32,11 @@ public class OutlineViewModel extends ViewModel {
 			}
 		}.start();
 		data = new RxPagedListBuilder<>(db.accountDao().getAll(), 50).buildFlowable(BackpressureStrategy.LATEST);
+		this.db = db;
+	}
+
+	public void delete(long id) {
+		android.util.Log.v("test", "delete: " + id);
+		db.accountDao().deleteById(id);
 	}
 }

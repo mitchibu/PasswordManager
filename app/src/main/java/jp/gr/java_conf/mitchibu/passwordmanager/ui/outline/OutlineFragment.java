@@ -4,6 +4,8 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 
 import javax.inject.Inject;
@@ -41,6 +43,15 @@ public class OutlineFragment extends DataBindingFragment<OutlineFragmentBinding>
 		getBinding().list.setAdapter(adapter);
 		getBinding().list.addOnLayoutChangeListener((v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> startPostponedEnterTransition());
 		adapter.setOnItemClickListener(getBinding().getPresenter().onItemClickListener);
+
+		ItemTouchHelper helper = new ItemTouchHelper(new SwipeToDeleteCallback() {
+			@Override
+			public void onSwiped(@NonNull RecyclerView.ViewHolder holder, int direction) {
+				android.util.Log.v("test", "onSwiped: " + direction);
+				getBinding().getModel().delete(holder.getItemId());
+			}
+		});
+		helper.attachToRecyclerView(getBinding().list);
 	}
 
 	@Override

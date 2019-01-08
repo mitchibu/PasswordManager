@@ -8,6 +8,8 @@ import android.support.v7.util.DiffUtil;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
+import java.util.Objects;
+
 import jp.gr.java_conf.mitchibu.passwordmanager.databinding.OutlineItemBinding;
 import jp.gr.java_conf.mitchibu.passwordmanager.model.dao.Account;
 import jp.gr.java_conf.mitchibu.passwordmanager.ui.view.BindablePagedAdapter;
@@ -29,6 +31,7 @@ public class OutlineAdapter extends BindablePagedAdapter<Account> {
 				return oldItem.equals(newItem);
 			}
 		});
+		setHasStableIds(true);
 	}
 
 	void setOnItemClickListener(OnItemClickListener<Account> listener) {
@@ -49,5 +52,10 @@ public class OutlineAdapter extends BindablePagedAdapter<Account> {
 			((OutlineItemBinding)holder.binding).setListener(onItemClickListener);
 		}
 		holder.binding.executePendingBindings();
+	}
+
+	@Override
+	public long getItemId(int position) {
+		return Objects.requireNonNull(getItem(position)).id;
 	}
 }
