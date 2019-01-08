@@ -28,7 +28,7 @@ public class OutlineAdapter extends BindablePagedAdapter<Account> {
 
 			@Override
 			public boolean areContentsTheSame(@NonNull Account oldItem, @NonNull Account newItem) {
-				return oldItem.equals(newItem);
+				return oldItem.updatedAt == newItem.updatedAt;
 			}
 		});
 		setHasStableIds(true);
